@@ -1,0 +1,19 @@
+@use './../../utils/style/variables.scss';
+
+.home {
+    display: flex;
+    flex-direction: column;
+    background-color: variables.$defaultNavBackgroundColor;
+    height: 100%;
+    width: 100%;
+    // width: calc(100% - variables.$sideBarWidth);
+}
+
+.homeLogo {
+    width: 300px;
+}
+
+a {
+    text-decoration: none;
+    color: variables.$navTitleColor;
+}

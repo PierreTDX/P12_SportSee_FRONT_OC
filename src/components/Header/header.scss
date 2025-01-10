@@ -1,0 +1,9 @@
+@use './../../utils/style/variables.scss';
+
+.header {
+    background-color: variables.$defaultNavBackgroundColor;
+    color: variables.$navTitleColor;
+    height: variables.$headerHeight;
+    position: sticky;
+    top: 0;
+}
