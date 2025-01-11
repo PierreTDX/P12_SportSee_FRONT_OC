@@ -1,0 +1,21 @@
+@use './variables.scss';
+
+.app-container {}
+
+.main-container {
+    display: flex;
+    height: calc(100vh - variables.$headerHeight);
+    overflow: hidden;
+}
+
+.sidebar {
+    min-width: variables.$sideBarWidth;
+}
+
+.content-routes {
+    overflow: auto;
+    background-color: aqua;
+    display: grid;
+    width: 100%;
+    // height: 100%;
+}

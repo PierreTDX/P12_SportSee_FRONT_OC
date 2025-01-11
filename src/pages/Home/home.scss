@@ -3,14 +3,17 @@
 .home {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: variables.$defaultNavBackgroundColor;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    // width: 100%;
     // width: calc(100% - variables.$sideBarWidth);
 }
 
 .homeLogo {
     width: 300px;
+    margin-bottom: 100px;
 }
 
 a {
