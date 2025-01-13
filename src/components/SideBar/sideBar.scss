@@ -3,6 +3,6 @@
 .sidebar {
     background-color: variables.$defaultNavBackgroundColor;
     color: variables.$navTitleColor;
-    width: variables.$sideBarWidth;
+    min-width: variables.$sideBarWidth;
     // height: calc(100vh - variables.$headerHeight); // $headerHeight correspond à la hauteur de .header
 }

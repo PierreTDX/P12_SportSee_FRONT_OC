@@ -1,15 +1,9 @@
-@use './variables.scss';
-
-.app-container {}
+@use './../../utils/style/variables.scss';
 
 .main-container {
     display: flex;
     height: calc(100vh - variables.$headerHeight);
     overflow: hidden;
-}
-
-.sidebar {
-    min-width: variables.$sideBarWidth;
 }
 
 .content-routes {

@@ -1,6 +1,6 @@
-import './dashboard.scss'
+import './userDashboard.scss'
 
-function Dashboard() {
+function UserDashboard() {
 
     return (
         <>
@@ -57,4 +57,4 @@ function Dashboard() {
     )
 }
 
-export default Dashboard
+export default UserDashboard

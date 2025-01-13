@@ -4,7 +4,7 @@ function SideBar() {
 
   return (
     <>
-      <div className='sidebar'>SideBar</div>
+      <aside className='sidebar'>SideBar</aside>
     </>
   )
 }

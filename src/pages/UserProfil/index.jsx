@@ -1,6 +1,6 @@
-import './profilUser.scss'
+import './userProfil.scss'
 
-function ProfilUser() {
+function UserProfil() {
 
     return (
         <>
@@ -11,7 +11,6 @@ function ProfilUser() {
                 <br />ProfilUser
                 <br />ProfilUser
                 <br />ProfilUser
-
                 <br />ProfilUser
                 <br />ProfilUser
                 <br />ProfilUser
@@ -37,4 +36,4 @@ function ProfilUser() {
     )
 }
 
-export default ProfilUser
+export default UserProfil
