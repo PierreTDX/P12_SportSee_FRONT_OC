@@ -6,4 +6,54 @@
     height: variables.$headerHeight;
     position: sticky;
     top: 0;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    gap: 20px;
+}
+
+/* Personnaliser la largeur de la scrollbar */
+.header::-webkit-scrollbar {
+    height: 4px;
+}
+
+/* Personnaliser la couleur de la scrollbar */
+.header::-webkit-scrollbar-thumb {
+    background: variables.$secondaryBackgroundColor;
+    border-radius: 2px;
+}
+
+/* Couleur de l'arrière-plan de la scrollbar */
+.header::-webkit-scrollbar-track {
+    background: variables.$mainColor;
+}
+
+
+.headerLogo {
+    width: 178px;
+    margin-left: 28px;
+}
+
+.navHeader {
+    width: 100%;
+}
+
+.navUl {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+
+.navLink {
+    text-decoration: none;
+    color: variables.$navTitleColor;
+}
+
+.navLink:hover {
+    text-decoration: underline;
 }

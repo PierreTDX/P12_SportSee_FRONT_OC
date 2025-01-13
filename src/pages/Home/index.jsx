@@ -8,8 +8,8 @@ function Home() {
         <>
             <main className='home'>
                 <img className="homeLogo" src={Logo} alt="Logo SportSee" />
-                <Link to={`/user/12`}>User 12</Link>
-                <Link to={`/user/18`}>User 18</Link>
+                <Link to={`/user/12`} className='userLink'>User 12</Link>
+                <Link to={`/user/18`} className='userLink'>User 18</Link>
             </main>
         </>
     )
