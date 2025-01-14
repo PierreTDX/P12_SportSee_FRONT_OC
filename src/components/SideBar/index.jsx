@@ -24,7 +24,7 @@ function SideBar() {
             <NavLink to='#'><img className="sideBarIcon" src={Halter} alt="Icon halter" /></NavLink>
           </div>
         </nav>
-        <p className='copyright'>Copiryght, SportSee 2020</p>
+        <p className='copyright'>Copyright, SportSee 2020</p>
       </aside>
     </>
   )
