@@ -17,15 +17,20 @@
     width: 4px;
 }
 
+/* Style au survol de la scrollbar avec javaScript*/
+.sideBar.hover-scrollbar::-webkit-scrollbar {
+    width: 12px;
+}
+
 /* Personnaliser la couleur de la scrollbar */
 .sideBar::-webkit-scrollbar-thumb {
-    background: variables.$secondaryBackgroundColor;
-    border-radius: 2px;
+    background: variables.$mainColor;
+    border-radius: 10px;
 }
 
 /* Couleur de l'arrière-plan de la scrollbar */
 .sideBar::-webkit-scrollbar-track {
-    background: variables.$mainColor;
+    background: variables.$secondaryBackgroundColor;
 }
 
 .navSideBar {

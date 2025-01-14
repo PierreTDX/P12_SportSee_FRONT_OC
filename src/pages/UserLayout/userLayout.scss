@@ -8,7 +8,7 @@
 
 .content-routes {
     overflow: auto;
-    background-color: aqua;
+    // background-color: aqua;
     display: grid;
     width: 100%;
     // height: 100%;
@@ -16,17 +16,23 @@
 
 /* Personnaliser la largeur de la scrollbar */
 .content-routes::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 4px;
+    height: 4px;
+}
+
+/* Style au survol de la scrollbar avec javaScript*/
+.content-routes.hover-scrollbar::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
 }
 
 /* Personnaliser la couleur de la scrollbar */
 .content-routes::-webkit-scrollbar-thumb {
-    background: variables.$secondaryBackgroundColor;
-    border-radius: 4px;
+    background: variables.$mainColor;
+    border-radius: 10px;
 }
 
 /* Couleur de l'arrière-plan de la scrollbar */
 .content-routes::-webkit-scrollbar-track {
-    background: variables.$mainColor;
+    background: variables.$secondaryBackgroundColor;
 }

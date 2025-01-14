@@ -1,6 +1,8 @@
 import './header.scss'
 import Logo from '../../assets/img/logo.svg'
 import { NavLink, useParams } from 'react-router-dom'
+import ScrollbarHover from "../../hooks/scrollbarHover"; // Importation du hook
+
 
 function Header() {
 
@@ -8,7 +10,7 @@ function Header() {
 
   return (
     <>
-      <header className='header'>
+      <header className='header' ref={ScrollbarHover()}> {/* utilisation du Hook*/}
         <NavLink to="/"><img className="headerLogo" src={Logo} alt="Logo SportSee" /></NavLink>
         <nav className='navHeader'>
           <ul className='navUl'>
