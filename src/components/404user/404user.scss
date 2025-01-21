@@ -1,0 +1,27 @@
+@use './../../utils/style/variables.scss';
+
+.errorUser {
+    background-color: variables.$defaultBackgroundColor;
+    height: calc(100vh - variables.$headerHeight);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.message404User {
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    color: variables.$mainColor;
+    margin: 0px 20px;
+}
+
+.backHomeUser {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin: 110px 20px 0px;
+    text-decoration: underline;
+    color: variables.$defaultFontColor;
+}
