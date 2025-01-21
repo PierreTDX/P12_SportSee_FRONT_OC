@@ -5,6 +5,7 @@ import Error from './pages/404';
 import UserLayout from './pages/UserLayout';
 import UserDashboard from './pages/UserDashboard';
 import UserProfil from './pages/UserProfil';
+import UserReglage from './pages/UserReglage';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/user/:id/" element={<UserLayout />} >
           <Route index element={<UserDashboard />} /> {/* Route par défaut /user/:id/ */}
           <Route path="profil" element={<UserProfil />} />
+          <Route path="reglage" element={<UserReglage />} />
         </Route>
 
       </Routes>

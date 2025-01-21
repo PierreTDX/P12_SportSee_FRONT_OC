@@ -1,28 +1,81 @@
 import './userDashboard.scss';
-import mockDatas from "../../data/mockDatas.json";
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import ErrorUser from '../../components/404user';
+import { fetchUserInfo, fetchUserActivity } from '../../api/apiService';
 
 function UserDashboard() {
-    const { id } = useParams(); // Récupération de l'ID depuis l'URL
-    const userId = parseInt(id); // Conversion en nombre
+    const { id } = useParams();
+    const userId = parseInt(id, 10);
+    const [userData, setUserData] = useState(null);
+    const [userActivity, setUserActivity] = useState(null);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true); // Ajout d'un état pour le chargement
 
-    // Recherche des données utilisateur
-    const userData = mockDatas.USER_MAIN_DATA.find((data) => data.id === userId);
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const userData = await fetchUserInfo(userId);
+                setUserData(userData);
 
+                const userActivity = await fetchUserActivity(userId);
+                setUserActivity(userActivity);
 
-    // Gestion des cas où l'utilisateur n'est pas trouvé
-    if (!userData) {
-        return <ErrorUser />;
+            } catch (err) {
+                setError(err.message); // Gestion de l'erreur
+            } finally {
+                setIsLoading(false); // Fin du chargement
+            }
+        };
+
+        getData();
+    }, [userId]);
+
+    // Affichage pendant le chargement
+    if (isLoading) {
+        return <p>Chargement...</p>;
     }
 
+    // Si une erreur est survenue, on affiche le composant d'erreur
+    if (error) {
+        return (
+            <ErrorUser />
+        );
+    }
+
+    // Affichage des données utilisateur
     return (
         <div className='dashboard'>
-            <h1>Bonjour {userData.userInfos.firstName}</h1>
-            <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
+            <h1>Bonjour {userData.userInfos?.firstName || 'Utilisateur'}</h1>
+            <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
 
+            <div className="user-activity">
+                <h2>Activité quotidienne</h2>
+                <table aria-label="Tableau d'activité quotidienne">
+                    <thead>
+                        <tr>
+                            <th>Jour</th>
+                            <th>Poids (kg)</th>
+                            <th>Calories (kcal)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {userActivity.sessions?.map((session, index) => (
+                            <tr key={index}>
+                                <td>{session.day}</td>
+                                <td>{session.kilogram} kg</td>
+                                <td>{session.calories} kcal</td>
+                            </tr>
+                        )) || (
+                                <tr>
+                                    <td>Aucune activité disponible</td>
+                                </tr>
+                            )}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
 
-export default UserDashboard
+export default UserDashboard;

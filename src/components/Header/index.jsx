@@ -16,7 +16,7 @@ function Header() {
           <ul className='navUl'>
             <li><NavLink to={`/user/${id}`} className='navLink'>Accueil</NavLink></li>
             <li><NavLink to={`/user/${id}/profil`} className='navLink'>Profil</NavLink></li>
-            <li><NavLink to='#' className='navLink'>Réglage</NavLink></li>
+            <li><NavLink to={`/user/${id}/reglage`} className='navLink'>Réglage</NavLink></li>
             <li><NavLink to='#' className='navLink'>Communauté</NavLink></li>
           </ul>
         </nav>
