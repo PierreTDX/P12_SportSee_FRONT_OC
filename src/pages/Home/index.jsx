@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './home.scss';
 import { Link } from 'react-router';
-import Logo from '../../assets/img/logox1.gif';
+import Logo from '../../assets/img/Logox1.gif';
 
 function Home() {
     const [key, setKey] = useState(Date.now()); // État pour gérer le rechargement du GIF
