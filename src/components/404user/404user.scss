@@ -2,7 +2,6 @@
 
 .errorUser {
     background-color: variables.$defaultBackgroundColor;
-    height: calc(100vh - variables.$headerHeight);
     display: flex;
     flex-direction: column;
     align-items: center;
