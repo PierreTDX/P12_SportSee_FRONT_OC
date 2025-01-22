@@ -21,13 +21,14 @@ const getMockData = (url, userId) => {
 
 // Fonction pour récupérer les données mockées ou API
 const fetchData = async (url, userId) => {
-  if (USE_MOCK_DATA) {
-    // Utiliser les données mockées si la variable d'environnement est vraie
+  const SELECT_DATA_MOKED = localStorage.getItem('SELECT_DATA_MOKED') === 'true';
+  if (USE_MOCK_DATA || SELECT_DATA_MOKED) {
+    // Utiliser les données mockées si USE_MOCK_DATA est 'true'
     return getMockData(url, userId); // Passer userId pour récupérer les données mockées
   }
 
   try {
-    // Utiliser les données API si la variable d'environnement est fausse
+    // Utiliser les données API si USE_MOCK_DATA est 'false'
     const response = await fetch(`${API_BASE_URL}/user/${userId}/${url}`);
     
     if (!response.ok) {
