@@ -6,6 +6,7 @@ import UserLayout from './pages/UserLayout';
 import UserDashboard from './pages/UserDashboard';
 import UserProfil from './pages/UserProfil';
 import UserReglage from './pages/UserReglage';
+import UserCommunaute from './pages/UserCommunaute';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route index element={<UserDashboard />} /> {/* Route par défaut /user/:id/ */}
           <Route path="profil" element={<UserProfil />} />
           <Route path="reglage" element={<UserReglage />} />
+          <Route path="communaute" element={<UserCommunaute />} />
         </Route>
 
       </Routes>

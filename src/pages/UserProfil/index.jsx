@@ -1,33 +1,73 @@
 import './userProfil.scss'
-import mockDatas from "../../data/mockDatas.json";
 import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import ErrorUser from '../../components/404user';
+import { fetchUserInfo, fetchUserActivity, fetchUserAverageSessions, fetchUserPerformance } from '../../api/apiService';
 
 function UserProfil() {
-    const { id } = useParams(); // Récupération de l'ID depuis l'URL
-    const userId = parseInt(id); // Conversion en nombre
+    const { id } = useParams();
+    const userId = parseInt(id, 10);
+    const [userData, setUserData] = useState(null);
+    const [userActivity, setUserActivity] = useState(null);
+    const [userSessions, setUserSessions] = useState(null);
+    const [userPerformance, setUserPerformance] = useState(null);
+    const [userScore, setUserScore] = useState(0); // État pour stocker le score ou todayScore
 
-    // Recherche des données utilisateur
-    const userData = mockDatas.USER_MAIN_DATA.find((data) => data.id === userId);
-    const userActivity = mockDatas.USER_ACTIVITY.find((data) => data.userId === userId);
-    const userSessions = mockDatas.USER_AVERAGE_SESSIONS.find((data) => data.userId === userId);
-    const userPerformance = mockDatas.USER_PERFORMANCE.find((data) => data.userId === userId);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true); // Ajout d'un état pour le chargement
 
-    // Gestion des cas où l'utilisateur n'est pas trouvé
-    if (!userData) {
-        return <ErrorUser />;
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const userData = await fetchUserInfo(userId);
+                setUserData(userData);
+
+                // Récupérer le score ou todayScore
+                const score = userData.score ?? userData.todayScore ?? 0;
+                setUserScore(score);
+
+                const userActivity = await fetchUserActivity(userId);
+                setUserActivity(userActivity);
+
+                const userSessions = await fetchUserAverageSessions(userId);
+                setUserSessions(userSessions);
+
+                const userPerformance = await fetchUserPerformance(userId);
+                setUserPerformance(userPerformance);
+
+            } catch (err) {
+                setError(err.message); // Gestion de l'erreur
+            } finally {
+                setIsLoading(false); // Fin du chargement
+            }
+        };
+
+        getData();
+    }, [userId]);
+
+    // Affichage pendant le chargement
+    if (isLoading) {
+        return <p>Chargement...</p>;
     }
 
+    // Si une erreur est survenue, on affiche le composant d'erreur
+    if (error) {
+        return (
+            <ErrorUser />
+        );
+    }
+
+    // Affichage des données utilisateur
     return (
         <div className='profilUser'>
             <h1>{userData.userInfos.firstName} {userData.userInfos.lastName}</h1>
-            <p>Données Mockées</p>
 
             {/* Exemple d'affichage des données utilisateur */}
             <div className="user-stats">
                 <h2>Statistiques principales :</h2>
                 <ul>
                     <li>Âge : {userData.userInfos.age} ans</li>
+                    <li>Score : {userScore}</li>
                     <li>Calories : {userData.keyData.calorieCount} kcal</li>
                     <li>Protéines : {userData.keyData.proteinCount} g</li>
                     <li>Glucides : {userData.keyData.carbohydrateCount} g</li>
