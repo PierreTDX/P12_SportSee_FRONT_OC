@@ -1,8 +1,13 @@
 import './userProfil.scss'
-import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import ErrorUser from '../../components/404user';
 import { fetchUserInfo, fetchUserActivity, fetchUserAverageSessions, fetchUserPerformance } from '../../api/apiService';
+import Calorie from '../../assets/img/calories-icon.svg';
+import Protein from '../../assets/img/protein-icon.svg';
+import Carb from '../../assets/img/carbs-icon.svg';
+import Fat from '../../assets/img/fat-icon.svg';
+
 
 function UserProfil() {
     const { id } = useParams();
@@ -56,77 +61,109 @@ function UserProfil() {
             <ErrorUser />
         );
     }
-
     // Affichage des données utilisateur
     return (
-        <div className='profilUser'>
-            <h1>{userData.userInfos.firstName} {userData.userInfos.lastName}</h1>
-
-            {/* Exemple d'affichage des données utilisateur */}
-            <div className="user-stats">
-                <h2>Statistiques principales :</h2>
-                <ul>
-                    <li>Âge : {userData.userInfos.age} ans</li>
-                    <li>Score : {userScore}</li>
-                    <li>Calories : {userData.keyData.calorieCount} kcal</li>
-                    <li>Protéines : {userData.keyData.proteinCount} g</li>
-                    <li>Glucides : {userData.keyData.carbohydrateCount} g</li>
-                    <li>Lipides : {userData.keyData.lipidCount} g</li>
-                </ul>
+        <div className='dashboard'>
+            <div className='contentHeader'>
+                <h1>{userData.userInfos?.firstName || 'Utilisateur'}</h1>
+                <p>Âge : {userData.userInfos.age} ans</p>
             </div>
-
-            {/* Exemple d'affichage des sessions d'activités */}
-            {userActivity && userActivity.sessions && (
-                <div className="user-activity">
-                    <h2>Activité quotidienne</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Jour</th>
-                                <th>Poids (kg)</th>
-                                <th>Calories (kcal)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {userActivity.sessions.map((session, index) => (
-                                <tr key={index}>
-                                    <td>{session.day}</td>
-                                    <td>{session.kilogram} kg</td>
-                                    <td>{session.calories} kcal</td>
+            <div className='contentDatas'>
+                <div className='contentCharts'>
+                    <div className="userActivity">
+                        <h2>Activité quotidienne</h2>
+                        <table aria-label="Tableau d'activité quotidienne">
+                            <thead>
+                                <tr>
+                                    <th>Jour</th>
+                                    <th>Poids (kg)</th>
+                                    <th>Calories (kcal)</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            )}
+                            </thead>
+                            <tbody>
+                                {userActivity.sessions?.length > 0 ? (
+                                    userActivity.sessions.map((session, index) => (
+                                        <tr key={index}>
+                                            <td>{session.day}</td>
+                                            <td>{session.kilogram} kg</td>
+                                            <td>{session.calories} kcal</td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan="3">Aucune activité disponible</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
 
-            {/* Exemple d'affichage des performances */}
-            {userPerformance && (
-                <div className="user-performance">
-                    <h2>Performances :</h2>
-                    <ul>
-                        {userPerformance.data.map((perf) => (
-                            <li key={perf.kind}>
-                                {userPerformance.kind[perf.kind]} : {perf.value}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+                    <div className='userAverage'>
+                        <h2>Durée moyenne des sessions :</h2>
+                        <ul>
+                            {userSessions.sessions.length > 0 ? (
+                                userSessions.sessions.map((session) => (
+                                    <li key={session.day}>Jour {session.day} : {session.sessionLength} min</li>
+                                ))
+                            ) : (
+                                <li>Aucune session disponible</li>
+                            )}
+                        </ul>
+                    </div>
 
-            {/* Exemple d'affichage des sessions moyennes */}
-            {userSessions && (
-                <div className="user-sessions">
-                    <h2>Durée moyenne des sessions :</h2>
-                    <ul>
-                        {userSessions.sessions.map((session) => (
-                            <li key={session.day}>Jour {session.day} : {session.sessionLength} min</li>
-                        ))}
-                    </ul>
+                    <div className='userPerformance'>
+                        <h2>Performances :</h2>
+                        <ul>
+                            {userPerformance.data.length > 0 ? (
+                                userPerformance.data.map((perf) => (
+                                    <li key={perf.kind}>
+                                        {userPerformance.kind[perf.kind]} : {perf.value}
+                                    </li>
+                                ))
+                            ) : (
+                                <li>Aucune performance disponible</li>
+                            )}
+                        </ul>
+                    </div>
+
+                    <div className='userScore'>
+                        <h2>Score :</h2>
+                        <p>Score : {userScore}</p>
+                    </div>
                 </div>
-            )}
+                <div className='contentStatistics'>
+                    <div className='statistic'>
+                        <img src={Calorie} alt="icon energie" />
+                        <div className='statisticData'>
+                            <p>{userData.keyData.calorieCount}kCal</p>
+                            <h2>Calories</h2>
+                        </div>
+                    </div>
+                    <div className='statistic'>
+                        <img src={Protein} alt="icon protéine" />
+                        <div className='statisticData'>
+                            <p>{userData.keyData.proteinCount}g</p>
+                            <h2>Proteines</h2>
+                        </div>
+                    </div>
+                    <div className='statistic'>
+                        <img src={Carb} alt="icon glucide" />
+                        <div className='statisticData'>
+                            <p>{userData.keyData.carbohydrateCount}g</p>
+                            <h2>Glucides</h2>
+                        </div>
+                    </div>
+                    <div className='statistic'>
+                        <img src={Fat} alt="icon lipide" />
+                        <div className='statisticData'>
+                            <p>{userData.keyData.lipidCount}g</p>
+                            <h2>Lipides</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
 
-export default UserProfil
+export default UserProfil;

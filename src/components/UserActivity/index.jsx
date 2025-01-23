@@ -32,7 +32,6 @@ function UserActivity({ sessions }) {
           </tbody>
         </table>
       </div>
-
     </>
   )
 }

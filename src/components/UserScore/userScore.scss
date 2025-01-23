@@ -3,4 +3,35 @@
 .userScore {
     grid-area: 2 / 3 / 3 / 4;
     background-color: variables.$secondaryBackgroundColor;
+    border-radius: 5px;
+    position: relative;
+}
+
+.userScore h2 {
+    position: absolute;
+    font-size: 15px;
+    font-weight: 500;
+    top: 25px;
+    left: 30px;
+}
+
+.scoreResult {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.scoreResult .score {
+    font-size: 26px;
+    font-weight: 700;
+    color: variables.$defaultFontColor;
+}
+
+.scoreResult p {
+    font-size: 16px;
+    font-weight: 500;
+    color: variables.$secondaryFontColor;
+    margin-top: 5px;
 }
