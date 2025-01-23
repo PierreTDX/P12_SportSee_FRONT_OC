@@ -2,13 +2,26 @@ import './userDashboard.scss';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import ErrorUser from '../../components/404user';
-import { fetchUserInfo, fetchUserActivity } from '../../api/apiService';
+import UserActivity from '../../components/UserActivity';
+import UserAverageSessions from '../../components/UserAverageSessions';
+import UserPerformance from '../../components/UserPerformance';
+import UserScore from '../../components/UserScore';
+import { fetchUserInfo, fetchUserActivity, fetchUserAverageSessions, fetchUserPerformance } from '../../api/apiService';
+import Calorie from '../../assets/img/calories-icon.svg';
+import Protein from '../../assets/img/protein-icon.svg';
+import Carb from '../../assets/img/carbs-icon.svg';
+import Fat from '../../assets/img/fat-icon.svg';
+
 
 function UserDashboard() {
     const { id } = useParams();
     const userId = parseInt(id, 10);
     const [userData, setUserData] = useState(null);
     const [userActivity, setUserActivity] = useState(null);
+    const [userSessions, setUserSessions] = useState(null);
+    const [userPerformance, setUserPerformance] = useState(null);
+    const [userScore, setUserScore] = useState(0); // État pour stocker le score ou todayScore
+
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true); // Ajout d'un état pour le chargement
 
@@ -18,8 +31,18 @@ function UserDashboard() {
                 const userData = await fetchUserInfo(userId);
                 setUserData(userData);
 
+                // Récupérer le score ou todayScore
+                const score = userData.score ?? userData.todayScore ?? 0;
+                setUserScore(score);
+
                 const userActivity = await fetchUserActivity(userId);
                 setUserActivity(userActivity);
+
+                const userSessions = await fetchUserAverageSessions(userId);
+                setUserSessions(userSessions);
+
+                const userPerformance = await fetchUserPerformance(userId);
+                setUserPerformance(userPerformance);
 
             } catch (err) {
                 setError(err.message); // Gestion de l'erreur
@@ -42,37 +65,50 @@ function UserDashboard() {
             <ErrorUser />
         );
     }
-
     // Affichage des données utilisateur
     return (
         <div className='dashboard'>
-            <h1>Bonjour {userData.userInfos?.firstName || 'Utilisateur'}</h1>
-            <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
-
-            <div className="user-activity">
-                <h2>Activité quotidienne</h2>
-                <table aria-label="Tableau d'activité quotidienne">
-                    <thead>
-                        <tr>
-                            <th>Jour</th>
-                            <th>Poids (kg)</th>
-                            <th>Calories (kcal)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {userActivity.sessions?.map((session, index) => (
-                            <tr key={index}>
-                                <td>{session.day}</td>
-                                <td>{session.kilogram} kg</td>
-                                <td>{session.calories} kcal</td>
-                            </tr>
-                        )) || (
-                                <tr>
-                                    <td>Aucune activité disponible</td>
-                                </tr>
-                            )}
-                    </tbody>
-                </table>
+            <div className='contentHeader'>
+                <h1>Bonjour <span>{userData.userInfos?.firstName || 'Utilisateur'}</span></h1>
+                <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+            </div>
+            <div className='contentDatas'>
+                <div className='contentCharts'>
+                    <UserActivity sessions={userActivity.sessions} />
+                    <UserAverageSessions sessions={userSessions.sessions} />
+                    <UserPerformance performances={userPerformance} />
+                    <UserScore score={userScore} />
+                </div>
+                <div className='contentStatistics'>
+                    <div className='statistic'>
+                        <img src={Calorie} alt="icon energie" />
+                        <div className='statisticData'>
+                            <p>{userData.keyData.calorieCount}kCal</p>
+                            <h2>Calories</h2>
+                        </div>
+                    </div>
+                    <div className='statistic'>
+                        <img src={Protein} alt="icon protéine" />
+                        <div className='statisticData'>
+                            <p>{userData.keyData.proteinCount}g</p>
+                            <h2>Proteines</h2>
+                        </div>
+                    </div>
+                    <div className='statistic'>
+                        <img src={Carb} alt="icon glucide" />
+                        <div className='statisticData'>
+                            <p>{userData.keyData.carbohydrateCount}g</p>
+                            <h2>Glucides</h2>
+                        </div>
+                    </div>
+                    <div className='statistic'>
+                        <img src={Fat} alt="icon lipide" />
+                        <div className='statisticData'>
+                            <p>{userData.keyData.lipidCount}g</p>
+                            <h2>Lipides</h2>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

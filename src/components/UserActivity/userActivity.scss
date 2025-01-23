@@ -1,0 +1,7 @@
+@use './../../utils/style/variables.scss';
+
+.userActivity {
+    grid-area: 1 / 1 / 2 / 4;
+    background-color: variables.$secondaryBackgroundColor;
+    border-radius: 5px;
+}

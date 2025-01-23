@@ -1,0 +1,6 @@
+@use './../../utils/style/variables.scss';
+
+.userScore {
+    grid-area: 2 / 3 / 3 / 4;
+    background-color: variables.$secondaryBackgroundColor;
+}

@@ -1,0 +1,7 @@
+@use './../../utils/style/variables.scss';
+
+.userPerformance {
+    grid-area: 2 / 2 / 3 / 3;
+    background-color: variables.$secondaryBackgroundColor;
+    border-radius: 5px;
+}
