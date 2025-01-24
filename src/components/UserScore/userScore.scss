@@ -13,6 +13,7 @@
     font-weight: 500;
     top: 25px;
     left: 30px;
+
 }
 
 .scoreResult {
@@ -26,7 +27,7 @@
 .scoreResult .score {
     font-size: 26px;
     font-weight: 700;
-    color: variables.$defaultFontColor;
+    color: variables.$secondaryGraphicColor;
 }
 
 .scoreResult p {

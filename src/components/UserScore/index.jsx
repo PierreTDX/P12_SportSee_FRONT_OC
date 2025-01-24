@@ -15,8 +15,8 @@ function UserScore({ score }) {
   return (
     <>
       <div className='userScore'>
-        <ResponsiveContainer>
-          <PieChart width={270} height={270}>
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
             <Pie // Rond plein du centre
               data={[{ value: 100 }]}
               cx='50%'

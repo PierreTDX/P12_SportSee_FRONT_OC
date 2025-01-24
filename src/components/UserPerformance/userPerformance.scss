@@ -4,4 +4,7 @@
     grid-area: 2 / 2 / 3 / 3;
     background-color: variables.$secondaryBackgroundColor;
     border-radius: 5px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 500;
 }
