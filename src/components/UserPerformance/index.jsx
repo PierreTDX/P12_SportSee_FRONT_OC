@@ -24,7 +24,6 @@ function UserPerformance({ performances }) {
       A: perf.value,
     }))
     .sort((a, b) => preferredOrder.indexOf(a.subject) - preferredOrder.indexOf(b.subject)); // trier selon l'ordre de préféré
-  console.log("🚀 ~ UserPerformance ~ data:", data)
 
   return (
     <>
@@ -55,7 +54,6 @@ function UserPerformance({ performances }) {
               contentStyle={{
                 backgroundColor: "#FBFBFB",
                 border: "none",
-                borderRadius: "5px",
                 color: "#FFFFFF",
               }}
               labelStyle={{ color: "#282D30" }}
