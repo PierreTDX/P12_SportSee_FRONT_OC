@@ -127,8 +127,7 @@ function UserProfil() {
                     </div>
 
                     <div className='userScore'>
-                        <h2>Score :</h2>
-                        <p>Score : {userScore}</p>
+                        <h2>Score : {userScore}</h2>
                     </div>
                 </div>
                 <div className='contentStatistics'>

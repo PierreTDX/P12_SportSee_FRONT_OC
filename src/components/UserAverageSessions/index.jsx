@@ -1,6 +1,7 @@
 import './userAverageSessions.scss'
 import PropTypes from 'prop-types';
 import CustomTooltip from '../CustomToolTip';
+import CustomToolTipCursor from '../CustomToolTipCursor';
 import { XAxis, YAxis, Tooltip, ResponsiveContainer, Area, AreaChart } from "recharts";
 
 function UserAverageSessions({ sessions }) {
@@ -52,8 +53,9 @@ function UserAverageSessions({ sessions }) {
               hide={true}
             />
             <Tooltip
-              cursor={{ stroke: "none" }}
-              content={<CustomTooltip />}
+              // cursor={{ stroke: "none" }}
+              content={<CustomTooltip />} // Recharts passe les props nécessaires (active, payload , etc.) au composant CustomTooltip
+              cursor={<CustomToolTipCursor />} // Recharts passe les props nécessaires (points, height, etc.) au composant CustomToolTipCursor
             />
             <Area
               type="natural"
@@ -64,7 +66,12 @@ function UserAverageSessions({ sessions }) {
               dot={false}
               fill="#FFFFFF"
               fillOpacity={0.1}
-            // opacity={0.2}
+              activeDot={{
+                r: 4, // taille du point au survol
+                stroke: "#FFFFFF30", // Bordure semi-transparente
+                strokeWidth: 9,
+                fill: "#FFFFFF", // Fond blanc
+              }}
             />
           </AreaChart>
         </ResponsiveContainer>

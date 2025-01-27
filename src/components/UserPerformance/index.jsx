@@ -49,6 +49,12 @@ function UserPerformance({ performances }) {
               stroke="#E60000"
               fill="#E60000"
               fillOpacity={0.6}
+              activeDot={{
+                r: 4, // taille du point au survol
+                stroke: "#FFFFFF30", // Bordure semi-transparente
+                strokeWidth: 9,
+                fill: "#FFFFFF", // Fond blanc
+              }}
             />
             <Tooltip
               contentStyle={{
