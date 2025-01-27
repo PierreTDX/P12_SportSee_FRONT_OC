@@ -1,6 +1,7 @@
 import './userPerformance.scss'
 import PropTypes from 'prop-types';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from "recharts";
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Tooltip } from "recharts";
+import CustomTooltip from '../CustomToolTip';
 
 function UserPerformance({ performances }) {
 
@@ -57,6 +58,7 @@ function UserPerformance({ performances }) {
               }}
             />
             <Tooltip
+              content={<CustomTooltip type='performance' />}
               contentStyle={{
                 backgroundColor: "#FBFBFB",
                 border: "none",

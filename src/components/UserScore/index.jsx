@@ -1,6 +1,6 @@
 import './userScore.scss'
 import PropTypes from 'prop-types';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
 
 function UserScore({ score }) {
@@ -51,16 +51,13 @@ function UserScore({ score }) {
             </Pie>
           </PieChart>
         </ResponsiveContainer>
-
         <h2>Score</h2>
         <div className='scoreResult'>
-
           <p className='score'>{score * 100}%</p>
           <p>de votre</p>
           <p>objectif</p>
         </div>
       </div >
-
     </>
   )
 }

@@ -4,4 +4,41 @@
     grid-area: 1 / 1 / 2 / 4;
     background-color: variables.$secondaryBackgroundColor;
     border-radius: 5px;
+    // overflow: hidden;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+}
+
+.userActivity h2 {
+    position: absolute;
+    top: 29px;
+    left: 32px;
+    color: #20253A;
+    font-size: 15px;
+    font-weight: 500;
+
+
+}
+
+.userActivity .recharts-bar-rectangle:hover {
+    // cursor: pointer;
+    /* Curseur de main survolant les barres */
+    background-color: red !important;
+    /* Couleur de fond lors du survol */
+}
+
+.recharts-bar-rectangles {
+    background-color: red !important;
+}
+
+.recharts-legend-item-text {
+    color: variables.$secondaryFontColor !important; // Couleur texte de la légende
+}
+
+.recharts-surface {
+    margin-right: 10px !important; // Espacement entre l'icône et le texte
+    // border-radius: 50%;   // Icône sous forme de cercle
+    width: 8px; // Taille de l'icône
+    height: 8px; // Taille de l'icône
 }

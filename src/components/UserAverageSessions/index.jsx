@@ -5,7 +5,6 @@ import CustomToolTipCursor from '../CustomToolTipCursor';
 import { XAxis, YAxis, Tooltip, ResponsiveContainer, Area, AreaChart } from "recharts";
 
 function UserAverageSessions({ sessions }) {
-  console.log("🚀 ~ UserAverageSessions ~ sessions:", sessions)
 
   // Calcul des moyennes avant Lundi et après Dimanche
   const beforeMonday = (sessions[0].sessionLength + sessions[1].sessionLength) / 2; // Moyenne de Lundi et Mardi
@@ -21,7 +20,6 @@ function UserAverageSessions({ sessions }) {
     })),
     { day: "D+", sessionLength: afterSunday + 20 },  // Ajouter 20 à la moyenne après dimanche
   ];
-  console.log("🚀 ~ data ~ data:", data)
 
   return (
     <>
@@ -54,7 +52,7 @@ function UserAverageSessions({ sessions }) {
             />
             <Tooltip
               // cursor={{ stroke: "none" }}
-              content={<CustomTooltip />} // Recharts passe les props nécessaires (active, payload , etc.) au composant CustomTooltip
+              content={<CustomTooltip type='averageSessions' />} // Recharts passe les props nécessaires (active, payload , etc.) au composant CustomTooltip
               cursor={<CustomToolTipCursor />} // Recharts passe les props nécessaires (points, height, etc.) au composant CustomToolTipCursor
             />
             <Area
