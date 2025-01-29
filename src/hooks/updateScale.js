@@ -26,8 +26,13 @@ const observer = new MutationObserver(() => {
 // Démarrer l'observation
 observer.observe(document.body, { childList: true, subtree: true });
 
-// Appliquer au chargement et au redimensionnement
+// Appliquer au chargement, au redimensionnement et au retour sur la page
 window.addEventListener('resize', updateScale);
 window.addEventListener('DOMContentLoaded', updateScale);
+window.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+        updateScale();
+    }
+});
 
 export default updateScale;
