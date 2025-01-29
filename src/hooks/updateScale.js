@@ -1,7 +1,6 @@
-// Fonction pour calculer l'échelle en fonction de la largeur de l'écran
 function updateScale() {
     const dashboard = document.querySelector('.dashboard');
-    if (!dashboard) return; // Sécurité si l'élément n'existe pas
+    if (!dashboard) return;
 
     const width = window.innerWidth;
     let scaleValue = 1;
@@ -13,12 +12,21 @@ function updateScale() {
     }
 
     dashboard.style.transform = `scale(${scaleValue})`;
+    dashboard.style.transformOrigin = "top left"; // Pour éviter les marges vides
 }
 
-// Appliquer immédiatement lors du premier chargement
-updateScale();
+// Observer le DOM pour s'assurer que `.dashboard` est bien présent
+const observer = new MutationObserver(() => {
+    if (document.querySelector('.dashboard')) {
+        updateScale();
+        observer.disconnect(); // On arrête d'observer une fois que l'élément est trouvé
+    }
+});
 
-// Appliquer l'échelle au redimensionnement et au chargement de la page
+// Démarrer l'observation
+observer.observe(document.body, { childList: true, subtree: true });
+
+// Appliquer au chargement et au redimensionnement
 window.addEventListener('resize', updateScale);
 window.addEventListener('DOMContentLoaded', updateScale);
 
