@@ -20,6 +20,6 @@ updateScale();
 
 // Appliquer l'échelle au redimensionnement et au chargement de la page
 window.addEventListener('resize', updateScale);
-window.addEventListener('load', updateScale);
+window.addEventListener('DOMContentLoaded', updateScale);
 
 export default updateScale;
