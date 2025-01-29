@@ -44,29 +44,3 @@ h1 span {
     justify-content: space-between;
     // gap: 30px;
 }
-
-.statistic {
-    background-color: variables.$secondaryBackgroundColor;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    padding: 32px 51px 32px 32px;
-}
-
-.statisticData {
-    margin-left: 24px;
-    gap: px;
-    color: variables.$secondaryGraphicColor;
-}
-
-.statistic p {
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.statistic h2 {
-    font-size: 14px;
-    font-weight: 500;
-    color: variables.$secondaryFontColor;
-    margin-top: 5px;
-}

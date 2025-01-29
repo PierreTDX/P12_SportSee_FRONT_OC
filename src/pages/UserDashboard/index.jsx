@@ -7,11 +7,9 @@ import UserAverageSessions from '../../components/UserAverageSessions';
 import UserPerformance from '../../components/UserPerformance';
 import UserScore from '../../components/UserScore';
 import { fetchUserInfo, fetchUserActivity, fetchUserAverageSessions, fetchUserPerformance } from '../../api/apiService';
-import Calorie from '../../assets/img/calories-icon.svg';
-import Protein from '../../assets/img/protein-icon.svg';
-import Carb from '../../assets/img/carbs-icon.svg';
-import Fat from '../../assets/img/fat-icon.svg';
 import Loader from '../../assets/img/loader.gif'
+import UserStatisticCard from '../../components/UserSatatistics';
+import ModelUserSatatistics from '../../components/UserSatatistics/modelUserSatatistics';
 
 
 function UserDashboard() {
@@ -71,6 +69,11 @@ function UserDashboard() {
             <ErrorUser />
         );
     }
+
+    // Utilisation de la classe pour formater les données
+    const formatedStatistics = new ModelUserSatatistics(userData).getFormattedData();
+    console.log("🚀 ~ UserDashboard ~ formatedStatistics:", formatedStatistics)
+
     // Affichage des données utilisateur
     return (
         <div className='dashboard'>
@@ -86,34 +89,14 @@ function UserDashboard() {
                     <UserScore score={userScore} />
                 </div>
                 <div className='contentStatistics'>
-                    <div className='statistic'>
-                        <img src={Calorie} alt="icon energie" />
-                        <div className='statisticData'>
-                            <p>{userData.keyData.calorieCount}kCal</p>
-                            <h2>Calories</h2>
-                        </div>
-                    </div>
-                    <div className='statistic'>
-                        <img src={Protein} alt="icon protéine" />
-                        <div className='statisticData'>
-                            <p>{userData.keyData.proteinCount}g</p>
-                            <h2>Proteines</h2>
-                        </div>
-                    </div>
-                    <div className='statistic'>
-                        <img src={Carb} alt="icon glucide" />
-                        <div className='statisticData'>
-                            <p>{userData.keyData.carbohydrateCount}g</p>
-                            <h2>Glucides</h2>
-                        </div>
-                    </div>
-                    <div className='statistic'>
-                        <img src={Fat} alt="icon lipide" />
-                        <div className='statisticData'>
-                            <p>{userData.keyData.lipidCount}g</p>
-                            <h2>Lipides</h2>
-                        </div>
-                    </div>
+                    {formatedStatistics.map((stat, index) => (
+                        <UserStatisticCard
+                            key={index}
+                            icon={stat.icon}
+                            value={stat.value}
+                            label={stat.label}
+                        />
+                    ))}
                 </div>
             </div>
         </div>
