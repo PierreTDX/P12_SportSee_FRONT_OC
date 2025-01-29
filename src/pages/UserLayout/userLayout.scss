@@ -7,8 +7,9 @@
 }
 
 .content-routes {
-    overflow-y: auto;
-    // overflow-x: hidden;
+    overflow: auto;
+    // overflow-y: auto;
+    // overflow-x: auto;
     // background-color: aqua;
     display: grid;
     width: 100%;

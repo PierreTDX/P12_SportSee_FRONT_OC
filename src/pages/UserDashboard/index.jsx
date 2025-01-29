@@ -10,6 +10,7 @@ import { fetchUserInfo, fetchUserActivity, fetchUserAverageSessions, fetchUserPe
 import Loader from '../../assets/img/loader.gif'
 import UserStatisticCard from '../../components/UserSatatistics';
 import ModelUserSatatistics from '../../components/UserSatatistics/modelUserSatatistics';
+import updateScale from '../../hooks/updateScale';
 
 
 function UserDashboard() {
@@ -23,6 +24,9 @@ function UserDashboard() {
 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true); // Ajout d'un état pour le chargement
+
+    //Hook pour appliquer l'échelle
+    updateScale();
 
     useEffect(() => {
         const getData = async () => {
@@ -51,6 +55,7 @@ function UserDashboard() {
         };
 
         getData();
+
     }, [userId]);
 
     // Affichage pendant le chargement
@@ -72,7 +77,6 @@ function UserDashboard() {
 
     // Utilisation de la classe pour formater les données
     const formatedStatistics = new ModelUserSatatistics(userData).getFormattedData();
-    console.log("🚀 ~ UserDashboard ~ formatedStatistics:", formatedStatistics)
 
     // Affichage des données utilisateur
     return (
