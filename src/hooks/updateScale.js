@@ -12,26 +12,21 @@ function updateScale() {
     }
 
     dashboard.style.transform = `scale(${scaleValue})`;
-    dashboard.style.transformOrigin = "top left"; // Pour éviter les marges vides
+    dashboard.style.transformOrigin = "top left"; // Éviter les marges vides
 }
 
-// Observer le DOM pour s'assurer que `.dashboard` est bien présent
-const observer = new MutationObserver(() => {
-    if (document.querySelector('.dashboard')) {
-        updateScale();
-        observer.disconnect(); // On arrête d'observer une fois que l'élément est trouvé
-    }
-});
+// Exécuter `updateScale` après un petit délai pour s'assurer que le DOM est bien prêt
+function delayedUpdateScale() {
+    setTimeout(updateScale, 50); // Délai léger pour laisser le DOM se stabiliser
+}
 
-// Démarrer l'observation
-observer.observe(document.body, { childList: true, subtree: true });
-
-// Appliquer au chargement, au redimensionnement et au retour sur la page
+// Écouteurs d'événements pour déclencher `updateScale`
 window.addEventListener('resize', updateScale);
-window.addEventListener('DOMContentLoaded', updateScale);
+window.addEventListener('DOMContentLoaded', delayedUpdateScale);
+window.addEventListener('load', delayedUpdateScale);
 window.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
-        updateScale();
+        delayedUpdateScale();
     }
 });
 
