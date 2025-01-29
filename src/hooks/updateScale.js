@@ -15,18 +15,26 @@ function updateScale() {
     dashboard.style.transformOrigin = "top left"; // Éviter les marges vides
 }
 
-// Exécuter `updateScale` après un petit délai pour s'assurer que le DOM est bien prêt
-function delayedUpdateScale() {
-    setTimeout(updateScale, 50); // Délai léger pour laisser le DOM se stabiliser
+// Fonction pour surveiller les changements dans le DOM
+function observeDashboard() {
+    const targetNode = document.body;
+    const observer = new MutationObserver(() => {
+        updateScale();
+    });
+
+    observer.observe(targetNode, { childList: true, subtree: true });
 }
 
-// Écouteurs d'événements pour déclencher `updateScale`
+// Appliquer le scale immédiatement et surveiller les changements
 window.addEventListener('resize', updateScale);
-window.addEventListener('DOMContentLoaded', delayedUpdateScale);
-window.addEventListener('load', delayedUpdateScale);
+window.addEventListener('DOMContentLoaded', () => {
+    updateScale();
+    observeDashboard();
+});
+window.addEventListener('load', updateScale);
 window.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
-        delayedUpdateScale();
+        updateScale();
     }
 });
 
