@@ -2,29 +2,12 @@ import './userPerformance.scss'
 import PropTypes from 'prop-types';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Tooltip } from "recharts";
 import CustomTooltip from '../CustomToolTip';
+import ModelUserPerformance from './modelUserPerformance';
 
 function UserPerformance({ performances }) {
 
-  // Correspondance des "kind" en français
-  const frenchKindMap = {
-    cardio: "Cardio",
-    energy: "Energie",
-    endurance: "Endurance",
-    strength: "Force",
-    speed: "Vitesse",
-    intensity: "Intensité",
-  };
-
-  // Ordre préféré des sujets dans le graphique
-  const preferredOrder = ["Intensité", "Vitesse", "Force", "Endurance", "Energie", "Cardio"];
-
-  // Construire dynamiquement les données pour le graphique et les trier
-  const data = performances.data
-    .map((perf) => ({
-      subject: frenchKindMap[performances.kind[perf.kind]], // Associer "kind" à son libellé et Traduire "kind" en français
-      A: perf.value,
-    }))
-    .sort((a, b) => preferredOrder.indexOf(a.subject) - preferredOrder.indexOf(b.subject)); // trier selon l'ordre de préféré
+  // Utilisation de la classe pour formater les données
+  const formattedPerformances = new ModelUserPerformance(performances).getFormattedData();
 
   return (
     <>
@@ -34,7 +17,7 @@ function UserPerformance({ performances }) {
             cx="50%"
             cy="50%"
             outerRadius="70%"
-            data={data}
+            data={formattedPerformances}
             style={{ backgroundColor: "#282D30" }}
           >
             <PolarGrid radialLines={false} stroke="#FFFFFF" />

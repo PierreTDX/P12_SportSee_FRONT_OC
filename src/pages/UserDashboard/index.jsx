@@ -11,6 +11,7 @@ import Calorie from '../../assets/img/calories-icon.svg';
 import Protein from '../../assets/img/protein-icon.svg';
 import Carb from '../../assets/img/carbs-icon.svg';
 import Fat from '../../assets/img/fat-icon.svg';
+import Loader from '../../assets/img/loader.gif'
 
 
 function UserDashboard() {
@@ -56,7 +57,12 @@ function UserDashboard() {
 
     // Affichage pendant le chargement
     if (isLoading) {
-        return <p>Chargement...</p>;
+        return (
+            <div>
+                <img src={Loader} alt="icon loader" style={{ width: "50px" }} />
+                <p>Chargement</p>
+            </div>
+        )
     }
 
     // Si une erreur est survenue, on affiche le composant d'erreur
@@ -74,7 +80,7 @@ function UserDashboard() {
             </div>
             <div className='contentDatas'>
                 <div className='contentCharts'>
-                    <UserActivity sessions={userActivity.sessions} />
+                    <UserActivity activity={userActivity.sessions} />
                     <UserAverageSessions sessions={userSessions.sessions} />
                     <UserPerformance performances={userPerformance} />
                     <UserScore score={userScore} />

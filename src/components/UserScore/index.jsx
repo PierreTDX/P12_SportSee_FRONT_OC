@@ -1,16 +1,16 @@
 import './userScore.scss'
 import PropTypes from 'prop-types';
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import ModelUserScore from './modelUserScore';
 
 
 function UserScore({ score }) {
 
-  const data = [
-    { name: "Score+", value: score * 100 },
-    { name: "Score-", value: 100 - (score * 100) }
-  ];
-  const COLORS = ["#FF0000", "#FFFFFF00"];
+  // Utilisation de la classe pour formater les données
+  const formattedScore = new ModelUserScore(score).getChartData();
+  const percentage = new ModelUserScore(score).getPercentage(); // Récupérer le score en pourcentage
 
+  const COLORS = ["#FF0000", "#FFFFFF00"];
 
   return (
     <>
@@ -32,7 +32,7 @@ function UserScore({ score }) {
             >
             </Pie>
             <Pie // Arc de cercle exterieur
-              data={data}
+              data={formattedScore}
               cx='50%'
               cy='50%'
               innerRadius={80} // diametre int
@@ -45,7 +45,7 @@ function UserScore({ score }) {
               startAngle={180} // départ à gauche
               endAngle={-180} // dans le sens Horaire
             >
-              {data.map((entry, index) => (
+              {formattedScore.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
@@ -53,7 +53,7 @@ function UserScore({ score }) {
         </ResponsiveContainer>
         <h2>Score</h2>
         <div className='scoreResult'>
-          <p className='score'>{score * 100}%</p>
+          <p className='score'>{percentage}%</p>
           <p>de votre</p>
           <p>objectif</p>
         </div>

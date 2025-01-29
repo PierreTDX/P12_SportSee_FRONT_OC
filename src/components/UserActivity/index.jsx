@@ -2,8 +2,12 @@ import './userActivity.scss'
 import PropTypes from 'prop-types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import CustomTooltip from '../CustomToolTip';
+import ModelUserActivity from './modelUserActivity';
 
-function UserActivity({ sessions }) {
+function UserActivity({ activity }) {
+
+  // Utilisation de la classe pour formater les données
+  const formattedActivity = new ModelUserActivity(activity).getFormattedData();
 
   return (
     <>
@@ -11,7 +15,7 @@ function UserActivity({ sessions }) {
         <h2>Activité quotidienne</h2>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
-            data={sessions}
+            data={formattedActivity}
             margin={{
               top: 5,
               right: 10,
@@ -23,7 +27,6 @@ function UserActivity({ sessions }) {
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
             <XAxis
               dataKey="day"
-              tickFormatter={(value, index) => index + 1} // afficher de 1 à x, au lieu des dates
               tickLine={false}
               tickMargin={10}
               stroke='#9B9EAC'
@@ -42,7 +45,6 @@ function UserActivity({ sessions }) {
               yAxisId="Calories"
               orientation="left"
               stroke="#E60000"
-              // domain={['dataMin - 50', 'dataMax +50']}
               hide={true}
             />
             <Tooltip
@@ -52,7 +54,6 @@ function UserActivity({ sessions }) {
               }}
             />
             <Legend
-              // layout="horizontal" // Disposition horizontale
               align="right"        // Alignement à droite
               verticalAlign="top"  // Alignement vertical en haut
               wrapperStyle={{
@@ -93,7 +94,7 @@ function UserActivity({ sessions }) {
 }
 
 UserActivity.propTypes = {
-  sessions: PropTypes.arrayOf(
+  activity: PropTypes.arrayOf(
     PropTypes.shape({
       day: PropTypes.string,
       calories: PropTypes.number,
