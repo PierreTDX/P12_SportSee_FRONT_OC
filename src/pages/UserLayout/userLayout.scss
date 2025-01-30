@@ -7,10 +7,8 @@
 }
 
 .content-routes {
-    overflow: auto;
-    // overflow-y: auto;
-    // overflow-x: auto;
-    // background-color: aqua;
+    overflow-y: auto;
+    overflow-x: hidden;
     display: grid;
     width: 100%;
     padding: 6vh 7vw 6vh 7vw;
@@ -38,4 +36,10 @@
 /* Couleur de l'arrière-plan de la scrollbar */
 .content-routes::-webkit-scrollbar-track {
     background: variables.$secondaryBackgroundColor;
+}
+
+@media (max-width: 1340px) {
+    .content-routes {
+        padding: 1vh 1vw 1vh 1vw;
+    }
 }

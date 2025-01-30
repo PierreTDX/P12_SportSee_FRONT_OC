@@ -27,3 +27,18 @@
     color: variables.$secondaryFontColor;
     margin-top: 5px;
 }
+
+@media (max-width: 1340px) {
+    .statistic {
+        padding: 20px 25px 20px 20px;
+    }
+}
+
+@media (max-width: 987px) {
+    .statistic {
+        // max-width: 369px;
+        flex-grow: 1;
+        // justify-content: center;
+        max-width: 100%;
+    }
+}

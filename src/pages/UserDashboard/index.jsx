@@ -6,12 +6,10 @@ import UserActivity from '../../components/UserActivity';
 import UserAverageSessions from '../../components/UserAverageSessions';
 import UserPerformance from '../../components/UserPerformance';
 import UserScore from '../../components/UserScore';
+import Loader from '../../components/Loader';
 import { fetchUserInfo, fetchUserActivity, fetchUserAverageSessions, fetchUserPerformance } from '../../api/apiService';
-import Loader from '../../assets/img/loader.gif'
 import UserStatisticCard from '../../components/UserSatatistics';
 import ModelUserSatatistics from '../../components/UserSatatistics/modelUserSatatistics';
-import updateScale from '../../hooks/updateScale';
-
 
 function UserDashboard() {
     const { id } = useParams();
@@ -24,9 +22,6 @@ function UserDashboard() {
 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true); // Ajout d'un état pour le chargement
-
-    //Hook pour appliquer l'échelle
-    updateScale();
 
     useEffect(() => {
         const getData = async () => {
@@ -61,10 +56,7 @@ function UserDashboard() {
     // Affichage pendant le chargement
     if (isLoading) {
         return (
-            <div>
-                <img src={Loader} alt="icon loader" style={{ width: "50px" }} />
-                <p>Chargement</p>
-            </div>
+            <Loader />
         )
     }
 
