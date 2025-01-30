@@ -2,6 +2,10 @@ import './userProfil.scss'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import ErrorUser from '../../components/404user';
+import UserActivity from '../../components/UserActivity';
+import UserAverageSessions from '../../components/UserAverageSessions';
+import UserPerformance from '../../components/UserPerformance';
+import UserScore from '../../components/UserScore';
 import { fetchUserInfo, fetchUserActivity, fetchUserAverageSessions, fetchUserPerformance } from '../../api/apiService';
 import Calorie from '../../assets/img/calories-icon.svg';
 import Protein from '../../assets/img/protein-icon.svg';
@@ -49,6 +53,7 @@ function UserProfil() {
         };
 
         getData();
+
     }, [userId]);
 
     // Affichage pendant le chargement
@@ -67,74 +72,20 @@ function UserProfil() {
             <ErrorUser />
         );
     }
+
     // Affichage des données utilisateur
     return (
-        <div className='dashboard'>
+        <div className='profilUser'>
             <div className='contentHeader'>
-                <h1>{userData.userInfos?.firstName || 'Utilisateur'}</h1>
-                <p>Âge : {userData.userInfos.age} ans</p>
+                <h1>Bonjour <span>{userData.userInfos?.firstName || 'Utilisateur'}</span></h1>
+                <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
             </div>
             <div className='contentDatas'>
                 <div className='contentCharts'>
-                    <div className="userActivity">
-                        <h2>Activité quotidienne</h2>
-                        <table aria-label="Tableau d'activité quotidienne">
-                            <thead>
-                                <tr>
-                                    <th>Jour</th>
-                                    <th>Poids (kg)</th>
-                                    <th>Calories (kcal)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {userActivity.sessions?.length > 0 ? (
-                                    userActivity.sessions.map((session, index) => (
-                                        <tr key={index}>
-                                            <td>{session.day}</td>
-                                            <td>{session.kilogram} kg</td>
-                                            <td>{session.calories} kcal</td>
-                                        </tr>
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td colSpan="3">Aucune activité disponible</td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div className='userAverage'>
-                        <h2>Durée moyenne des sessions :</h2>
-                        <ul>
-                            {userSessions.sessions.length > 0 ? (
-                                userSessions.sessions.map((session) => (
-                                    <li key={session.day}>Jour {session.day} : {session.sessionLength} min</li>
-                                ))
-                            ) : (
-                                <li>Aucune session disponible</li>
-                            )}
-                        </ul>
-                    </div>
-
-                    <div className='userPerformance'>
-                        <h2>Performances :</h2>
-                        <ul>
-                            {userPerformance.data.length > 0 ? (
-                                userPerformance.data.map((perf) => (
-                                    <li key={perf.kind}>
-                                        {userPerformance.kind[perf.kind]} : {perf.value}
-                                    </li>
-                                ))
-                            ) : (
-                                <li>Aucune performance disponible</li>
-                            )}
-                        </ul>
-                    </div>
-
-                    <div className='userScore'>
-                        <h2>Score : {userScore}</h2>
-                    </div>
+                    <UserActivity activity={userActivity.sessions} />
+                    <UserAverageSessions sessions={userSessions.sessions} />
+                    <UserPerformance performances={userPerformance} />
+                    <UserScore score={userScore} />
                 </div>
                 <div className='contentStatistics'>
                     <div className='statistic'>

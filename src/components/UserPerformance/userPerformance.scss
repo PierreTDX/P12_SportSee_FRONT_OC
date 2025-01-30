@@ -7,5 +7,14 @@
     overflow: hidden;
     font-size: 12px;
     font-weight: 500;
-    min-width: 258px;
+    min-width: 200px;
 }
+
+@media (max-width: 1100px) {
+    .recharts-polar-angle-axis-ticks {
+        transform: scale(0.96) translateY(5px);
+        transform-origin: center;
+    }
+}
+
+// recharts-layer recharts-polar-angle-axis angleAxis

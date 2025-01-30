@@ -9,6 +9,7 @@ function UserAverageSessions({ sessions }) {
 
   // Utilisation de la classe pour formater les données
   const formattedSessions = new ModelUserAverageSessions(sessions).getFormattedData();
+  console.log("🚀 ~ UserAverageSessions ~ formattedSessions:", formattedSessions)
 
   return (
     <>

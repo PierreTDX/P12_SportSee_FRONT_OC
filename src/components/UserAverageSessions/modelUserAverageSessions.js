@@ -6,12 +6,12 @@ class ModelUserAverageSessions {
   
       // Mapper les jours (1 à 7) en lettres (L, M, M, J, V, S, D) + ajouter les nouveaux points avant et après
       this.data = [
-        { day: "L-", sessionLength: this.beforeMonday + 20 }, // Ajouter 20 à la moyenne avant lundi
+        { day: "", sessionLength: this.beforeMonday + 20 }, // Ajouter 20 à la moyenne avant lundi
         ...sessions.map((session) => ({
           day: ["L", "M", "M", "J", "V", "S", "D"][session.day - 1], // Utiliser les jours correspondants
           sessionLength: session.sessionLength + 20, // Ajouter 20 à la valeur de sessionLength
         })),
-        { day: "D+", sessionLength: this.afterSunday + 20 }, // Ajouter 20 à la moyenne après dimanche
+        { day: "", sessionLength: this.afterSunday + 20 }, // Ajouter 20 à la moyenne après dimanche
       ];
     }
   
