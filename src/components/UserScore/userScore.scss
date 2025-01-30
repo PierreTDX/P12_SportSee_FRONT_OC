@@ -5,7 +5,7 @@
     background-color: variables.$secondaryBackgroundColor;
     border-radius: 5px;
     position: relative;
-    min-width: 258px;
+    min-width: 200px;
 }
 
 .userScore h2 {
@@ -36,4 +36,11 @@
     font-weight: 500;
     color: variables.$secondaryFontColor;
     margin-top: 5px;
+}
+
+@media (max-width: 1340px) {
+    .userScore h2 {
+        top: 15px;
+        left: 20px;
+    }
 }

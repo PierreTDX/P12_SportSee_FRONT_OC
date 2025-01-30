@@ -42,3 +42,13 @@
     width: 8px; // Taille de l'icône
     height: 8px; // Taille de l'icône
 }
+
+.recharts-legend-wrapper {
+    padding-bottom: 85px;
+}
+
+@media (max-width: 1340px) {
+    .recharts-legend-wrapper {
+        padding-bottom: 55px;
+    }
+}

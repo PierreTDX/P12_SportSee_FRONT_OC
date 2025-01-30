@@ -49,17 +49,7 @@ h1 span {
     // gap: 30px;
 }
 
-/* Pour les écrans jusqu'à 1024px */
-@media (max-width: 1024px) {
-    .dashboard {
-        // transform: scale(0.7);
-        // width: 100%;
-        transform-origin: top left;
-    }
-}
-
-/* Pour les écrans entre 1025px et 1440px, progression de 0.7 à 1 */
-@media (min-width: 1025px) and (max-width: 1440px) {
+@media (max-width: 1440px) {
     .dashboard {
         // transform: scale(calc(0.7 + (1 - 0.7) * (100vw - 1024px) / (1440 - 1024)));
         // width: 100%;

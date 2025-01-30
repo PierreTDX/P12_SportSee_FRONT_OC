@@ -59,7 +59,7 @@ function UserActivity({ activity }) {
               wrapperStyle={{
                 marginRight: '15px', // Ajout d'une marge à droite
                 marginTop: '23px',
-                paddingBottom: '85px',
+                // paddingBottom: '85px',
               }}
               formatter={(value) => {
                 if (value === "kilogram") {
