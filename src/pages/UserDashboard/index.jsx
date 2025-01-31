@@ -1,3 +1,9 @@
+/**
+ * @file index.jsx
+ * @description Composant React pour afficher le tableau de bord d'un utilisateur avec ses statistiques, ses activités, et ses performances.
+ * Ce composant charge les données utilisateur depuis une API et les affiche dans différents graphiques et cartes de statistiques.
+ */
+
 import './userDashboard.scss';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
@@ -11,6 +17,13 @@ import { fetchUserInfo, fetchUserActivity, fetchUserAverageSessions, fetchUserPe
 import UserStatisticCard from '../../components/UserSatatistics';
 import ModelUserSatatistics from '../../components/UserSatatistics/modelUserSatatistics';
 
+/**
+ * Composant affichant le tableau de bord d'un utilisateur avec des graphiques et des cartes de statistiques.
+ * Ce composant récupère les données utilisateur depuis une API, gère l'état de chargement, et affiche une erreur si nécessaire.
+ * Les informations utilisateur sont affichées sous forme de graphiques et cartes statistiques.
+ * 
+ * @returns {JSX.Element} Le tableau de bord utilisateur avec ses données et statistiques.
+ */
 function UserDashboard() {
     const { id } = useParams();
     const userId = parseInt(id, 10);

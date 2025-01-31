@@ -8,6 +8,19 @@ import UserProfil from './pages/UserProfil';
 import UserReglage from './pages/UserReglage';
 import UserCommunaute from './pages/UserCommunaute';
 
+/**
+ * Composant principal de l'application.
+ * 
+ * Il configure les différentes routes de l'application à l'aide de React Router.
+ * - La route de base ("/") mène à la page d'accueil.
+ * - Les routes sous "/user/:id/" affichent un layout avec plusieurs sous-pages :
+ *   - Dashboard de l'utilisateur (/user/:id/)
+ *   - Profil de l'utilisateur (/user/:id/profil)
+ *   - Réglages de l'utilisateur (/user/:id/reglage)
+ *   - Communauté de l'utilisateur (/user/:id/communaute)
+ * 
+ * @returns {JSX.Element} Retourne le composant Router avec les Routes configurées.
+ */
 function App() {
 
   return (

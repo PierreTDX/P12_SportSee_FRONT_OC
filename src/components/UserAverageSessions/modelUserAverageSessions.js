@@ -1,3 +1,9 @@
+/**
+ * @class ModelUserAverageSessions
+ * @description Classe pour formater et ajuster les données des sessions moyennes d'un utilisateur.
+ * Elle calcule les moyennes avant lundi et après dimanche, et ajuste les durées des sessions, pour lisser la courbe en dehors du graphique.
+ */
+
 class ModelUserAverageSessions {
     constructor(sessions) {
       // Calcul des moyennes avant Lundi et après Dimanche

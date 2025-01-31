@@ -1,3 +1,8 @@
+/**
+ * @class ModelUserStatistics
+ * @description Classe pour formater les statistiques de l'utilisateur.
+ */
+
 import Calorie from '../../assets/img/calories-icon.svg';
 import Protein from '../../assets/img/protein-icon.svg';
 import Carb from '../../assets/img/carbs-icon.svg';

@@ -1,3 +1,15 @@
+/**
+ * @file mockDatas.js
+ * @description Ce fichier contient des données simulées utilisées pour un tableau de bord d'utilisateur (dashboard).
+ * Les données sont organisées en quatre catégories :
+ * 1. **USER_MAIN_DATA** : Contient des informations principales sur les utilisateurs, comme le nom, l'âge, le score d'aujourd'hui et les données clés nutritionnelles.
+ * 2. **USER_ACTIVITY** : Contient des informations sur l'activité physique de l'utilisateur, y compris les sessions quotidiennes de poids et de calories consommées.
+ * 3. **USER_AVERAGE_SESSIONS** : Contient la durée moyenne des sessions d'entraînement des utilisateurs sur une semaine.
+ * 4. **USER_PERFORMANCE** : Contient les performances des utilisateurs sur diverses catégories d'exercices, comme le cardio, l'endurance, la force, etc.
+ * 
+ * Ces données sont utilisées dans l'application pour afficher des statistiques utilisateur.
+ */
+
 const USER_MAIN_DATA = [
     {
         id: 12,

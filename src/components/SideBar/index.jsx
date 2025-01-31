@@ -1,3 +1,8 @@
+/**
+ * @file index.jsx
+ * @description Composant React affichant une barre latérale avec des icônes de navigation pour différentes activités sportives.
+ */
+
 import './sideBar.scss'
 import Halter from '../../assets/img/halter.svg'
 import Yoga from '../../assets/img/yoga.svg'
@@ -6,6 +11,10 @@ import Velo from '../../assets/img/velo.svg'
 import { NavLink } from 'react-router-dom'
 import ScrollbarHover from "../../hooks/scrollbarHover"; // Importation du hook
 
+/**
+ * Composant affichant une barre latérale de navigation avec des icônes de sports.
+ * @returns {JSX.Element} Composant SideBar.
+ */
 function SideBar() {
 
   return (

@@ -1,8 +1,17 @@
+/**
+ * @file index.jsx
+ * @description Composant React représentant la page d'accueil de l'application.
+ */
+
 import { useEffect, useState } from 'react';
 import './home.scss';
 import { Link } from 'react-router-dom'; // Corrigez l'import pour `react-router-dom`
 import Logo from '../../assets/img/Logox1.gif';
 
+/**
+ * Composant d'accueil affichant le logo de l'application et offrant des liens vers des pages utilisateurs spécifiques (User 12 et User 18).
+ * @returns {JSX.Element} Le composant d'accueil avec le logo, les liens vers les utilisateurs, et un commutateur pour activer les données mockées.
+ */
 function Home() {
     const [key, setKey] = useState(Date.now()); // Gestion du rechargement du GIF
     const [useMockData, setUseMockData] = useState(() => {

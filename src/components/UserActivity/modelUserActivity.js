@@ -1,3 +1,9 @@
+/**
+ * @class ModelUserActivity
+ * @description Classe pour formater les données d'activité d'un utilisateur.
+ * Chaque entrée de session est transformée pour avoir un numéro de jour simple.
+ */
+
 class ModelUserActivity {
   constructor(data) {
     this.formattedData = data.map((entry, index) => ({

@@ -1,9 +1,20 @@
+/**
+ * @file index.jsx
+ * @description Composant React affichant la performance d'un utilisateur sous forme de graphique radar.
+ */
+
 import './userPerformance.scss'
 import PropTypes from 'prop-types';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Tooltip } from "recharts";
 import CustomTooltip from '../CustomToolTip';
 import ModelUserPerformance from './modelUserPerformance';
 
+/**
+ * Composant affichant la performance d'un utilisateur sous forme de graphique radar.
+ * @param {Object} props - Les propriétés du composant.
+ * @param {Object} props.performances - Données de performance.
+ * @returns {JSX.Element} Composant UserPerformance.
+ */
 function UserPerformance({ performances }) {
 
   // Utilisation de la classe pour formater les données
@@ -57,6 +68,15 @@ function UserPerformance({ performances }) {
   )
 }
 
+/**
+ * Définition des types de propriétés attendues par le composant UserPerformance.
+ * @type {Object}
+ * @property {Object} performances - Données de performance formatées.
+ * @property {Object.<number, string>} performances.kind - Association des types de performance.
+ * @property {Array<Object>} performances.data - Tableau des performances.
+ * @property {number} performances.data[].kind - Identifiant du type de performance.
+ * @property {number} performances.data[].value - Valeur de la performance.
+ */
 UserPerformance.propTypes = {
   performances: PropTypes.shape({
     kind: PropTypes.objectOf(PropTypes.string).isRequired,

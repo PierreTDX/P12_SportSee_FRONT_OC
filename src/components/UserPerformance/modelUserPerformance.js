@@ -1,3 +1,8 @@
+/**
+ * @class ModelUserPerformance
+ * @description Classe pour formater les performances de l'utilisateur et les trier selon un ordre préféré.
+ */
+
 class ModelUserPerformance {
     constructor(performances) {
       // Correspondance des "kind" en français

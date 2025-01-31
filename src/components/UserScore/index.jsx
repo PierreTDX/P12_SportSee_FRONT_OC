@@ -1,9 +1,19 @@
+/**
+ * @file index.jsx
+ * @description Composant React affichant le score d'un utilisateur sous forme de graphique circulaire.
+ */
+
 import './userScore.scss'
 import PropTypes from 'prop-types';
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import ModelUserScore from './modelUserScore';
 
-
+/**
+ * Composant affichant le score d'un utilisateur sous forme de graphique circulaire.
+ * @param {Object} props - Les propriétés du composant.
+ * @param {number} props.score - Score de l'utilisateur sous forme de valeur numérique.
+ * @returns {JSX.Element} Composant UserScore.
+ */
 function UserScore({ score }) {
 
   // Utilisation de la classe pour formater les données
@@ -62,6 +72,11 @@ function UserScore({ score }) {
   )
 }
 
+/**
+ * Définition des types de propriétés attendues par le composant UserScore.
+ * @type {Object}
+ * @property {number} score - Score de l'utilisateur sous forme numérique.
+ */
 UserScore.propTypes = {
   score: PropTypes.number,
 };

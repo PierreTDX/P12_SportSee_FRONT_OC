@@ -1,3 +1,8 @@
+/**
+ * @class ModelUserScore
+ * @description Classe pour formater et calculer le score de l'utilisateur.
+ */
+
 class ModelUserScore {
     constructor(score) {
       this.score = score;

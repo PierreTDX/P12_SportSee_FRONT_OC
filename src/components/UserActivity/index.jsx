@@ -1,9 +1,20 @@
+/**
+ * @file index.jsx
+ * @description Composant React affichant l'activité quotidienne d'un utilisateur sous forme de graphique en barres.
+ */
+
 import './userActivity.scss'
 import PropTypes from 'prop-types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import CustomTooltip from '../CustomToolTip';
 import ModelUserActivity from './modelUserActivity';
 
+/**
+ * Composant UserActivity
+ * @param {Object} props - Les propriétés du composant
+ * @param {Array} props.activity - Les données d'activité de l'utilisateur
+ * @returns {JSX.Element} Un graphique en barres affichant l'activité quotidienne
+ */
 function UserActivity({ activity }) {
 
   // Utilisation de la classe pour formater les données
@@ -93,6 +104,14 @@ function UserActivity({ activity }) {
   )
 }
 
+/**
+ * Définition des types de propriétés attendues par le composant UserActivity
+ * @type {Object}
+ * @property {Array<Object>} activity - Tableau des activités journalières
+ * @property {string} activity[].day - Date de l'activité au format string
+ * @property {number} activity[].calories - Nombre de calories brûlées
+ * @property {number} activity[].kilogram - Poids de l'utilisateur
+ */
 UserActivity.propTypes = {
   activity: PropTypes.arrayOf(
     PropTypes.shape({

@@ -1,6 +1,24 @@
+/**
+ * @file scrollbarHover.js
+ * @description Hook personnalisé permettant d'ajouter un effet de survol sur les barres de défilement (scrollbars).
+ * Ce hook permet de modifier dynamiquement l'apparence des barres de défilement lorsqu'elles sont survolées par la souris.
+ * Il ajoute une classe CSS "hover-scrollbar" à l'élément référencé lorsque la souris se trouve sur la barre de défilement, permettant ainsi de personnaliser son apparence.
+ * 
+ * @returns {React.RefObject} Une référence (`ref`) à l'élément ciblé pour appliquer l'effet de survol de la scrollbar.
+ */
+
 import { useEffect, useRef } from "react";
 
-// Hook personnalisé pour ajouter un pseudo hover sur la scrollbar (explication à la fin)
+/**
+ * Hook personnalisé permettant d'ajouter un effet de survol aux barres de défilement.
+ * Lorsque la souris survole la barre de défilement, une classe "hover-scrollbar" est ajoutée, 
+ * permettant de personnaliser son apparence (par exemple, en augmentant la largeur de la scrollbar).
+ * 
+ * Ce hook écoute les événements de mouvement de la souris pour détecter si la souris est au-dessus des barres de défilement 
+ * et applique ou retire la classe en conséquence.
+ * 
+ * @returns {React.RefObject} La référence à l'élément dont la barre de défilement doit être surveillée pour l'ajout de la classe "hover-scrollbar".
+ */
 function ScrollbarHover() {
     const contentRef = useRef(null);
 

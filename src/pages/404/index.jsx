@@ -1,7 +1,17 @@
+/**
+ * @file index.jsx
+ * @description Composant affichant une page d'erreur 404 avec un message et un lien vers la page d'accueil.
+ * Ce composant est utilisé pour indiquer à l'utilisateur que la page demandée est introuvable.
+ */
+
 import './404.scss'
 import Error404 from '../../assets/img/404.gif'
 import { Link } from 'react-router-dom'
 
+/**
+ * Composant d'erreur 404 informant l'utilisateur que la page demandée est introuvable.
+ * @returns {JSX.Element} La page d'erreur 404 avec un lien de retour à l'accueil.
+ */
 function Error() {
 
     return (
