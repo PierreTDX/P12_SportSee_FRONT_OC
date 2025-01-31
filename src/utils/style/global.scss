@@ -25,3 +25,27 @@ p {
     margin: 0;
     padding: 0;
 }
+
+/* WebKit (Chrome, Safari seulement) */
+/* Personnaliser la largeur de la scrollbar */
+*::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+/* Style au survol de la scrollbar avec javaScript*/
+*.hover-scrollbar::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+/* Personnaliser la couleur de la scrollbar */
+*::-webkit-scrollbar-thumb {
+    background: variables.$mainColor;
+    border-radius: 10px;
+}
+
+/* Couleur de l'arrière-plan de la scrollbar */
+*::-webkit-scrollbar-track {
+    background: variables.$secondaryBackgroundColor;
+}

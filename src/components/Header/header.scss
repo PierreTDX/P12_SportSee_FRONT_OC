@@ -14,28 +14,6 @@
     z-index: 10;
 }
 
-/* Personnaliser la largeur de la scrollbar */
-.header::-webkit-scrollbar {
-    height: 4px;
-}
-
-/* Style au survol de la scrollbar avec javaScript*/
-.header.hover-scrollbar::-webkit-scrollbar {
-    height: 12px;
-}
-
-/* Personnaliser la couleur de la scrollbar */
-.header::-webkit-scrollbar-thumb {
-    background: variables.$mainColor;
-    border-radius: 10px;
-}
-
-/* Couleur de l'arrière-plan de la scrollbar */
-.header::-webkit-scrollbar-track {
-    background: variables.$secondaryBackgroundColor;
-}
-
-
 .headerLogo {
     width: 178px;
     margin-left: 28px;

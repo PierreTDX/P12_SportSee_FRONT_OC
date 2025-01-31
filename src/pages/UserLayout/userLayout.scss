@@ -15,29 +15,6 @@
     transition: padding 0.3s ease-in-out;
 }
 
-/* Personnaliser la largeur de la scrollbar */
-.content-routes::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-}
-
-/* Style au survol de la scrollbar avec javaScript*/
-.content-routes.hover-scrollbar::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-}
-
-/* Personnaliser la couleur de la scrollbar */
-.content-routes::-webkit-scrollbar-thumb {
-    background: variables.$mainColor;
-    border-radius: 10px;
-}
-
-/* Couleur de l'arrière-plan de la scrollbar */
-.content-routes::-webkit-scrollbar-track {
-    background: variables.$secondaryBackgroundColor;
-}
-
 @media (max-width: 1340px) {
     .content-routes {
         padding: 1vh 1vw 1vh 1vw;
