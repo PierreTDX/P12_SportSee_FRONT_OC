@@ -31,7 +31,6 @@ function UserDashboard() {
     const [userActivity, setUserActivity] = useState(null);
     const [userSessions, setUserSessions] = useState(null);
     const [userPerformance, setUserPerformance] = useState(null);
-    const [userScore, setUserScore] = useState(0); // État pour stocker le score ou todayScore
 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true); // Ajout d'un état pour le chargement
@@ -41,10 +40,6 @@ function UserDashboard() {
             try {
                 const userData = await fetchUserInfo(userId);
                 setUserData(userData);
-
-                // Récupérer le score ou todayScore
-                const score = userData.score ?? userData.todayScore ?? 0;
-                setUserScore(score);
 
                 const userActivity = await fetchUserActivity(userId);
                 setUserActivity(userActivity);
@@ -95,7 +90,7 @@ function UserDashboard() {
                     <UserActivity activity={userActivity.sessions} />
                     <UserAverageSessions sessions={userSessions.sessions} />
                     <UserPerformance performances={userPerformance} />
-                    <UserScore score={userScore} />
+                    <UserScore score={userData.score ?? userData.todayScore ?? 0} />
                 </div>
                 <div className='contentStatistics'>
                     {formatedStatistics.map((stat, index) => (
