@@ -31,38 +31,49 @@ function UserDashboard() {
     const [userActivity, setUserActivity] = useState(null);
     const [userSessions, setUserSessions] = useState(null);
     const [userPerformance, setUserPerformance] = useState(null);
-    const [userScore, setUserScore] = useState(0); // État pour stocker le score ou todayScore
 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true); // Ajout d'un état pour le chargement
 
     useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+        console.log("🚀 ~ useEffect ~ signal:", signal)
+
         const getData = async () => {
             try {
-                const userData = await fetchUserInfo(userId);
-                setUserData(userData);
+                const userData = await fetchUserInfo(userId, signal);
+                console.log("🚀 ~ getData ~ userData1:", userData)
+                if (!signal.aborted) setUserData(userData);
 
-                // Récupérer le score ou todayScore
-                const score = userData.score ?? userData.todayScore ?? 0;
-                setUserScore(score);
+                const userActivity = await fetchUserActivity(userId, signal);
+                console.log("🚀 ~ getData ~ userActivity:", userActivity)
+                if (!signal.aborted) setUserActivity(userActivity);
 
-                const userActivity = await fetchUserActivity(userId);
-                setUserActivity(userActivity);
+                const userSessions = await fetchUserAverageSessions(userId, signal);
+                if (!signal.aborted) setUserSessions(userSessions);
 
-                const userSessions = await fetchUserAverageSessions(userId);
-                setUserSessions(userSessions);
-
-                const userPerformance = await fetchUserPerformance(userId);
-                setUserPerformance(userPerformance);
+                const userPerformance = await fetchUserPerformance(userId, signal);
+                if (!signal.aborted) setUserPerformance(userPerformance);
 
             } catch (err) {
-                setError(err.message); // Gestion de l'erreur
+                console.log("🚀 ~ getData ~ err:", err);
+                if (err.name !== 'AbortError') {
+                    setError(err.message);
+                }
             } finally {
-                setIsLoading(false); // Fin du chargement
+                if (!signal.aborted) {
+                    setIsLoading(false); // Fin du chargement uniquement si la requête n'a pas été annulée
+                }
             }
         };
 
         getData();
+
+        // Cleanup: Annuler la requête uniquement si le composant est démonté ou si userId change
+        return () => {
+            controller.abort();
+        };
 
     }, [userId]);
 
@@ -95,7 +106,7 @@ function UserDashboard() {
                     <UserActivity activity={userActivity.sessions} />
                     <UserAverageSessions sessions={userSessions.sessions} />
                     <UserPerformance performances={userPerformance} />
-                    <UserScore score={userScore} />
+                    <UserScore score={userData.score ?? userData.todayScore ?? 0} />
                 </div>
                 <div className='contentStatistics'>
                     {formatedStatistics.map((stat, index) => (

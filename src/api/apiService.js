@@ -20,7 +20,7 @@ const getMockData = (url, userId) => {
 };
 
 // Fonction pour récupérer les données mockées ou API
-const fetchData = async (url, userId) => {
+const fetchData = async (url, userId, signal) => {
   const SELECT_DATA_MOKED = localStorage.getItem('SELECT_DATA_MOKED') === 'true';
   if (USE_MOCK_DATA || SELECT_DATA_MOKED) {
     // Utiliser les données mockées si USE_MOCK_DATA est 'true'
@@ -29,7 +29,7 @@ const fetchData = async (url, userId) => {
 
   try {
     // Utiliser les données API si USE_MOCK_DATA est 'false'
-    const response = await fetch(`${API_BASE_URL}/user/${userId}/${url}`);
+    const response = await fetch(`${API_BASE_URL}/user/${userId}/${url}`, {signal});
     
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -38,23 +38,25 @@ const fetchData = async (url, userId) => {
     const data = await response.json();
     return data.data;
   } catch (error) {
-    console.error("Erreur lors de la récupération des données :", error);
-    throw error; // Retourner l'erreur pour être gérée dans un composant React
+    if (error.name !== 'AbortError') {
+      console.error("Erreur lors de la récupération des données :", error);
+      throw error; // Retourner l'erreur pour être gérée dans un composant React
+    }
   }
 };
 
-export const fetchUserInfo = (id) => {
-  return fetchData('', id); // Appel avec '' comme URL et 'id' comme paramètre
+export const fetchUserInfo = (id, signal) => {
+  return fetchData('', id, signal); // Appel avec '' comme URL et 'id' comme paramètre
 };
 
-export const fetchUserActivity = (id) => {
-  return fetchData('activity', id); // Appel avec 'activity' comme URL et 'id' comme paramètre
+export const fetchUserActivity = (id, signal) => {
+  return fetchData('activity', id, signal); // Appel avec 'activity' comme URL et 'id' comme paramètre
 };
 
-export const fetchUserAverageSessions = (id) => {
-  return fetchData('average-sessions', id); // Appel avec 'average-sessions' comme URL et 'id' comme paramètre
+export const fetchUserAverageSessions = (id, signal) => {
+  return fetchData('average-sessions', id, signal); // Appel avec 'average-sessions' comme URL et 'id' comme paramètre
 };
 
-export const fetchUserPerformance = (id) => {
-  return fetchData('performance', id); // Appel avec 'performance' comme URL et 'id' comme paramètre
+export const fetchUserPerformance = (id, signal) => {
+  return fetchData('performance', id, signal); // Appel avec 'performance' comme URL et 'id' comme paramètre
 };
