@@ -30,7 +30,7 @@ function CustomTooltip({ active, payload, type }) {
             case 'averageSessions':
                 return (
                     <div style={{ backgroundColor: "#FBFBFB", padding: "10px", textAlign: "center" }}>
-                        <p style={{ color: "#000000" }}>{`${payload[0].value} min`}</p>
+                        <p style={{ color: "#000000" }}>{`${payload[0].value - 20} min`}</p>
                     </div>
                 );
 
